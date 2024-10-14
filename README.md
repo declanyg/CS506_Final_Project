@@ -1,5 +1,5 @@
 # CS506_Final_Project
-CS506_Final_Project
+CS506_Final_Project (UPDATE 1)
 
 Description of the project
 - This project is to explore stock prices in the tech field by exploring the iteration between stock movement data, options data, and current events. 
