@@ -1,0 +1,11 @@
+# config.py
+
+# API Keys
+API_KEY_ALPHA_VANTAGE = "0BLC1M3867CCX9FQ"
+API_KEY_YAHOO_FINANCE = "yahoo_finance_key"
+
+# Constants
+DEFAULT_SYMBOL = "^GSPC"
+START_DATE = "2023-09-01"
+END_DATE = "2024-09-01"
+NEWS_QUERY = "S&P 500"
