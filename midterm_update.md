@@ -10,18 +10,23 @@ We have decided on predicting a precise ticker: **QQQ**. This will allow us to p
 
 ### Stock Market Data
 
-To obtain stock ticker numbers from market data in the past year, we use the Yahoo Finance API. This allows us to obtain all prices from **QQQ** in the past year.
+We have decided on predicting a precise ticker: **QQQ**. This will allow us to precisely train on the tech subset of the news headlines, simplifying the training process, as **QQQ** tracks the Nasdaq-100 Index that includes the 100 largest non-financial companies listed on NasDaq. 50% of the stocks on Nasdaq are classifed as tech stocks according to US News. 
+
+To obtain stock ticker numbers from market data in the past year, we use the Yahoo Finance API. This allows us to obtain all prices from **QQQ** in the past year. Although the amount of data within one year may be considered quite little, it should be sufficent to determine patterns. Below is a plotted image of the stock data over time
 
 ![Market Data](./plots/QQQ_price.png)
 
 ### Financial Headline Data
 
-For now, we focus our efforts on processing data from Alpha Vantage API. Although each call gives us a large quantity of usable data, including sentiment analysis and relevancy of each given news article and headline, there were a few problems posed by this. Most notably, the news sentiment query only allows for a limit of 1000 news articles and sentiments to be scraped at a time. As such, we had to break down our time frame of one year into multiple different smaller time frames and run a query on each one. To maximize the potential amount of scrapable data, we decided to break it into time frames of 6 days each, since 366 is divisible by 6. However, this led to the issue of being  rate limited by the free API which restricts it to a limit of 25 API requests per day. Thus, currently, the amount of data we scraped is through the use of bi-weekly time frames. 
+For now, we focus our efforts on processing data from Alpha Vantage API. Although each call gives us a large quantity of usable data, including sentiment analysis and relevancy of each given news article and headline, there were a few problems posed by this. Most notably, the news sentiment query only allows for a limit of 1000 news articles and sentiments to be scraped at a time. As such, we had to break down our time frame of one year into multiple different smaller time frames and run a query on each one. To maximize the potential amount of scrapable data, we decided to break it into time frames of 6 days each, since 366 is divisible by 6. However, this led to the issue of being  rate limited by the free API which restricts it to a limit of 25 API requests per day. Thus, currently, the amount of data we scraped is through the use of bi-weekly time frames. As for the specific columns of data we decided to keep, they are as follows:
+- title
+- url
+- time_published
+- source
+- overall_sentiment_score
+- overall_sentiment_label
+- ticker_sentiment
+Overall sentiment_score x and label are defined as x <= -0.35: Bearish; -0.35 < x <= -0.15: Somewhat-Bearish; -0.15 < x < 0.15: Neutral; 0.15 <= x < 0.35: Somewhat_Bullish; x >= 0.35: Bullish , according to the Alpha Vantage API.
 
 The distribution of sentiment scores is as follows:
-=======
-We have decided on predicting a precise ticker: **QQQ**. This will allow us to precisely train on the tech subset of the news headlines, simplifying the training process, as \_\_\_ tracks specifically technology companies' prices.
-
-To obtain stock ticker numbers from market data in the past year, we use the Yahoo Finance API. This allows us to obtain all prices from **QQQ** in the past year.
-
-![alt text](./plots/QQQ_price.png)
+![Market Data](./plots/Average Overall Sentiment Score.png)
