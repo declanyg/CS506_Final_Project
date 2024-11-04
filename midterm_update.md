@@ -29,4 +29,4 @@ For now, we focus our efforts on processing data from Alpha Vantage API. Althoug
 Overall sentiment_score x and label are defined as x <= -0.35: Bearish; -0.35 < x <= -0.15: Somewhat-Bearish; -0.15 < x < 0.15: Neutral; 0.15 <= x < 0.35: Somewhat_Bullish; x >= 0.35: Bullish , according to the Alpha Vantage API.
 
 The distribution of sentiment scores is as follows:
-![Market Data](./plots/"Distribution of Overall Sentiment Labels.png")
+![Market Data]("./plots/Distribution of Overall Sentiment Labels.png")
