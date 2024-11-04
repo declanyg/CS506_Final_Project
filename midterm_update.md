@@ -35,3 +35,7 @@ The distribution of sentiment scores by source is as follows:
 
 The distribution of sentiment scores by label is as follows:
 ![Financial Data](./plots/Distribution_of_Overall_Sentiment_Labels.png)
+
+### Preliminary Results
+
+
