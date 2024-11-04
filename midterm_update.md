@@ -17,7 +17,7 @@ To obtain stock ticker numbers from market data in the past year, we use the Yah
 
 ### Financial Headline Data
 
-For now, we focus our efforts on processing data from Alpha Vantage API. There were a few problems posed by this. While each call gives us a large quantity of usable data, including sentiment analysis and relevancy of each given news article and headline, we ran into the problem of being rate limited by the free API. In order to obtain enough data, we were restricted by the limit of 25 API requests per day. However, we managed to get a significant of useable news data; at least for some preliminary explorations into the landscape of news sources.
+For now, we focus our efforts on processing data from Alpha Vantage API. Although each call gives us a large quantity of usable data, including sentiment analysis and relevancy of each given news article and headline, there were a few problems posed by this. Most notably, the news sentiment query only allows for a limit of 1000 news articles and sentiments to be scraped at a time. As such, we had to break down our time frame of one year into multiple different smaller time frames and run a query on each one. To maximize the potential amount of scrapable data, we decided to break it into time frames of 6 days each, since 366 is divisible by 6. However, this led to the issue of being  rate limited by the free API which restricts it to a limit of 25 API requests per day. Thus, currently, the amount of data we scraped is through the use of bi-weekly time frames. 
 
 The distribution of sentiment scores is as follows:
 =======
@@ -26,4 +26,3 @@ We have decided on predicting a precise ticker: **QQQ**. This will allow us to p
 To obtain stock ticker numbers from market data in the past year, we use the Yahoo Finance API. This allows us to obtain all prices from **QQQ** in the past year.
 
 ![alt text](./plots/QQQ_price.png)
->>>>>>> a7ef7469c321e351d9b518f4b93f92222434cc02
