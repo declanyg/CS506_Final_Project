@@ -28,5 +28,10 @@ For now, we focus our efforts on processing data from Alpha Vantage API. Althoug
 - ticker_sentiment
 Overall sentiment_score x and label are defined as x <= -0.35: Bearish; -0.35 < x <= -0.15: Somewhat-Bearish; -0.15 < x < 0.15: Neutral; 0.15 <= x < 0.35: Somewhat_Bullish; x >= 0.35: Bullish , according to the Alpha Vantage API.
 
-The distribution of sentiment scores is as follows:
-![Market Data](./plots/Distribution_of_Overall_Sentiment_Labels.png)
+To better understand the financial headline data, and to decide on how to model the data, multiple plots were made. 
+
+The distribution of sentiment scores by source is as follows:
+![Financial Data](./plots/Average_Overall_Sentiment_Score_by_Source.png)
+
+The distribution of sentiment scores by label is as follows:
+![Financial Data](./plots/Distribution_of_Overall_Sentiment_Labels.png)
