@@ -36,6 +36,12 @@ The distribution of sentiment scores by source is as follows:
 The distribution of sentiment scores by label is as follows:
 ![Financial Data](./plots/Distribution_of_Overall_Sentiment_Labels.png)
 
-### Preliminary Results
+These models show that the distribution of the sentiment data is rather skewed, with only about 0.3% of the articles being classified as bearish. Thus, data sampling techniques should be used to rebalance the data.
 
+### Preliminary Results
+To start, we decided to fit out data to a linear regression model. The biggest challenge for this was figuring out how to use our collected data to train the model. Eventually, we decided on training the preliminary model on the average sentiments from specific news source on each unique day. As such, each source was one hot encoded, then assigned the average sentiments from each news source published on that day. The model can be seen below:
+
+![Linear Regression Model](./plots/LinearRegressionPreliminaryPlot.png)
+
+This model has a MSE of about 6784 and thus can be considered to be not that good with predicting the data (average difference in predicted and actual price is about $82). Hence, we will most likely change our model to a neural network or decision tree in the latter half of this project.
 
