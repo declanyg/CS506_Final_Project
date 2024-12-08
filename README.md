@@ -25,16 +25,43 @@ Firstly, we addressed the first goalpost of interpreting current events. Origina
 
 However, we ultimately discovered, and decided to focus our efforts on, the Alpha Vantage API. This API provides an endpoint that returns "live and historical news & sentiment data from a large & growing selection of premier news outlets around the world." In using this API, we could obtain, in large quantities, key news articles and their associated sentiment data pre-calculated.
 
-There were a few problems posed by this. Most notably, the news sentiment query only allows for a limit of 1000 news articles and sentiments to be scraped at a time. As such, we had to break down our time frame of one year into multiple different smaller time frames and run a query on each one. However, after we obtained a year's worth of stock data, merging with our obtained stock data, and parsing the data, we have a resulting dataset with 101 rows and 10 columns:
+There were a few problems posed by this. Most notably, the news sentiment query only allows for a limit of 1000 news articles and sentiments to be scraped at a time. As such, we had to break down our time frame of one year into multiple different smaller time frames and run a query on each one. However, after we obtained a year's worth of stock data, merging with our obtained stock data, and parsing the data, we have a resulting dataset with 164 rows and 10 columns:
 
+- Dates: the dates associaed with each price and sentiment.
 - Adj Close, High, Low, Open: Financial data (adjusted close, high, low, and open prices).
 - aggregate_sentiment_mean, aggregate_sentiment_median, aggregate_sentiment_std: Statistical metrics for sentiment aggregation.
 - Target, TargetClass: Numerical and categorical targets, respectively.
 - TargetNextClose: The predicted next adjusted close price.
 
-(il make charts later)
+## Exploratory Data Analysis
 
-## Preliminary Analysis on Data
+In inspecting how these interact with our target, the predicted next adjusted close price, we explore the correlations and patterns within the data.
+
+### Price and Sentiment
+
+We can see the sentiment and price against time. Notably, the sentiment spikes and varies greatly, while the price reflects a relatively normal "well-performing" ticker, where it fluctuates and generally, slowly incresaes. However, the sentiment spikes, and falls very dramatically, a maybe expected pattern when considering how typically, the news articles will be more alarmist.
+
+![Financial Data](./plots/price_sentiment_vs_time.png)
+
+We would also like to compare how these ticker prices interact, and hopefully find some sort of correlation in order to create these predictions. After scaling, we see:
+
+![Financial Data](./plots/med_sentiment_price_vs_time.png)
+
+More importantly, we want to see a numerical correlation between the two of these figures:
+
+![Financial Data](./plots/corr_price_sentiment.png)
+
+We observe that average sentiment median has a decently high correlation to price.
+
+### Target
+
+However, despite knowing how the aggregiate sentiment median interacts with the current day's newscycle, our goal is to predict future adjusted closing prices. Therefore, it makes sense to instead evaluate the correlation between the sentiment and the _next_ day's price; which is contained in a column titled TargetNextClose. Specifically, we want the change in the price between consecutive days; this is the data contained in Target.
+
+The following plot showcases Target and Sentiment against Dates:
+
+![Financial Data](./plots/scaled_target_sentiment.png)
+
+Ultimately, the target also seems to fluctuate greatly; each small change in price within the adjusted close price is reflected at a larger scale due to scaling both the sentiment and target to the same scale. However, we can still imagine that the sentiment seems to shadow the target. It is this relationship that we hope to explore with our model.
 
 # Model Analysis
 
