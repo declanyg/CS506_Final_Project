@@ -29,9 +29,20 @@ There were a few problems posed by this. Most notably, the news sentiment query 
 
 - Dates: the dates associaed with each price and sentiment.
 - Adj Close, High, Low, Open: Financial data (adjusted close, high, low, and open prices).
+
+In financial data,Adj Close, High, Low, and Open are key metrics that are used to analyze the price of an item on the stock market. Open represents for the price of the stock at the beginning of the day. High and Low both are the highest and lowest price the stock reaches throughout the day. Finally, Adjusted Close is the closing price of a stock that has been adjusted to account for various stock movements, such as stock splits, dividends, and other necessary adjustments. In our model, we look to calculate adjusted close, because it reflects the stock's value while accounting for events that can change the share price over time.
+
 - aggregate_sentiment_mean, aggregate_sentiment_median, aggregate_sentiment_std: Statistical metrics for sentiment aggregation.
+
+Aggregate sentiment is calculated by taking the mean of each day of sentiment. For each news article obtained by the API, the aggregate sentiment mean, median and standard deviation is calculated based off the reported sentiment of each article.
+
+- TargetNextClose: The next adjusted close price.
+
+Given that our goal is to calculate the price of the next day, we include a column titled TargetNextClose, which is simply the adjusted close of the stock for the next day within our historical dataset.
+
 - Target, TargetClass: Numerical and categorical targets, respectively.
-- TargetNextClose: The predicted next adjusted close price.
+
+Finally, we have two features that help enumerate the aspects of the prediction. TargetClass holds a binary 0 or a 1, indicating whether or not the the price of the next day increased or decreased. Target represents the difference in price of Adjusted Close between the days. It is calculated by taking the difference between TargetNextClose and Adj. Close.
 
 ## Exploratory Data Analysis
 
