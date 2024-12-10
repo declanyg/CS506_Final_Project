@@ -1,7 +1,10 @@
+jupyter
 yfinance
 matplotlib
 pandas
-tensorflow
+tensorflow==2.8.0
+keras>=2.8.0,<2.9
+numpy>=1.22,<=1.24.3
 pandas-ta
 scikit-learn
 pyti
