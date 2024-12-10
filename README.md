@@ -88,4 +88,8 @@ It was clear that a simple linear regression model was not going to be sufficien
 
 ![Financial Data](./plots/model2_dtr.png)
 
+We moved on to an LSTM (Long Short-Term Memory) Neural Network model, which is particularly well-suited for time series data due to its ability to capture long-term dependencies and patterns in sequential data. After preprocessing the data (including scaling, feature engineering, and splitting it into train and test sets), the LSTM model was trained to predict the next target. This approach proved to be significantly better than the earlier models. The LSTM captured the sequential nature of the financial data, leading to a Mean Squared Error of **0.02478**. This represented a substantial improvement over both linear regression and the decision tree regressor. The plot below compares the predicted values with the actual values, showing a much closer alignment and better trend-following capability. However, some deviations were still observed.
+
+![Financial Data](./plots/model3_lstm.png)
+
 # Results
