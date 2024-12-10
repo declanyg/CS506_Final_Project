@@ -1,19 +1,30 @@
-# Define your virtual environment and flask app
-VENV = venv
-FLASK_APP = app.py
+# Makefile for setting up the environment
 
-# Install dependencies
-install:
-	python3 -m venv $(VENV)
-	./$(VENV)/bin/pip install -r requirements.txt
+.PHONY: install clean
 
-# Run code
-run:
-	run code
+# Python version and environment setup
+PYTHON = python
+PIP = $(PYTHON) -m pip
+ENV_NAME = venv
 
-# Clean up virtual environment
+# Installation targets
+install: setup_environment install_dependencies
+
+setup_environment:
+	@if [ ! -d $(ENV_NAME) ]; then \
+		echo "Creating virtual environment..."; \
+		$(PYTHON) -m venv $(ENV_NAME); \
+	fi
+	@echo "Upgrading pip..."
+	@$(ENV_NAME)/bin/pip install --upgrade pip
+
+install_dependencies:
+	@echo "Installing general dependencies..."
+	@$(ENV_NAME)/bin/pip install -r requirements.txt
+	@echo "All packages installed"
+
+run: 
+	@$(ENV_NAME)/bin/jupyter notebook
 clean:
-	rm -rf $(VENV)
-
-# Reinstall all dependencies
-reinstall: clean install
+	@echo "Cleaning up environment..."
+	@rm -rf $(ENV_NAME)
