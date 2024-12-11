@@ -21,10 +21,15 @@ setup_environment:
 install_dependencies:
 	@echo "Installing general dependencies..."
 	@$(ENV_NAME)/bin/pip install -r requirements.txt
+	$(ENV_NAME)/bin/pip install --upgrade jupyter ipykernel nbconvert nbformat
+	@$(ENV_NAME)/bin/python -m ipykernel install --user --name=$(ENV_NAME)
 	@echo "All packages installed"
 
 run: 
 	@$(ENV_NAME)/bin/jupyter notebook
+
 clean:
 	@echo "Cleaning up environment..."
+	@$(ENV_NAME)/bin/jupyter kernelspec uninstall $(ENV_NAME)
 	@rm -rf $(ENV_NAME)
+	@echo "Environment cleaned up"
