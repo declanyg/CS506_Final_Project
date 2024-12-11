@@ -9,7 +9,7 @@ make run
 
 ```
 
-In the jupyter notebook instance, open the file ` CS506_Final_Project_Organized.ipynb`, and select “Cell” - “Run All” to run all code.
+In the jupyter notebook instance, open the file ` CS506_Final_Project_Organized.ipynb`, and select “Cell” - “Run All” to run all code. If the model is taking too long to import libraries, download the notebook and run it in colab.
 
 # Introduction
 
