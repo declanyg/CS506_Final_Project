@@ -26,3 +26,6 @@ jobs:
     - name: Run check
       run: make run & 
             sleep 5 
+
+    - name: launch jupyter notebook
+      run: jupyter notebook
