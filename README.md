@@ -25,16 +25,16 @@ On the modeling front, we have expanded past the basic linear regression models 
 
 Firstly, we addressed the first goalpost of interpreting current events. Originally, our objective was to obtain a series of current events by writing a program to web-scrape various notable technological journals, including sources like Financial Times, Forbes, New York Times, Reuters. We intended to obtain key headlines related to each of their technology articles (most news-sources have tags that tie each article towards a category), and calculate the sentiment of both the headlines and the bodies of each article. In this way, we could explore how the headlines interact with future stock prices.
 
-Ultimately, we decided to focus our efforts on, the Alpha Vantage API. This API provides an endpoint that returns "live and historical news & sentiment data from a large & growing selection of premier news outlets around the world." By using this API, we could obtain, in large quantities, key news articles and their associated sentiment data pre-calculated. Thus, not only reducing the total amount of time we would've spent having to parse through and classify the headlines ourselves, but, most importantly, giving us a rather simple way to collect a plethora of different news article headlines seemlessly.
+Ultimately, we decided to focus our efforts on the Alpha Vantage API. This API provides an endpoint that returns "live and historical news & sentiment data from a large & growing selection of premier news outlets around the world." By using this API, we could obtain, in large quantities, key news articles and their associated sentiment data pre-calculated. Thus, not only reducing the total amount of time we would've spent having to parse through and classify the headlines ourselves, but, most importantly, giving us a rather simple way to collect a plethora of different news article headlines seamlessly.
 
-However, this is not to say there weren't any challenges posed by this decision. The most notable of which was the restrictions API Vantage imposed on its users. As previously mentioned during the midterm report, the news sentiment query only allows for a limit of 1000 news articles and sentiments to be scraped at a time. This coupled with the fact that any given API key/user may only execute 25 queries per day meant that we had to find other workarounds to collect a adequate amount of data. As such, we had to break down our time frame of one year into multiple different smaller time frames and run a query on each one. After lots of testing, we eventually found the best way was to collect 50 news headlines with their respecitive sentiments per day (resulting in about 25 days per API key). After collecting each individual roughly 25 days components, we merged them into the final news sentiment dataframe. The final news sentiment dataframe being roughly 18300 news articles.
+However, this is not to say there weren't any challenges posed by this decision. The most notable of which was the restrictions API Vantage imposed on its users. As previously mentioned during the midterm report, the news sentiment query only allows for a limit of 1000 news articles and sentiments to be scraped at a time. This coupled with the fact that any given API key/user may only execute 25 queries per day meant that we had to find other workarounds to collect an adequate amount of data. As such, we had to break down our time frame of one year into multiple different smaller time frames and run a query on each one. After lots of testing, we eventually found the best way was to collect 50 news headlines with their respective sentiments per day (resulting in about 25 days per API key). After collecting each individual 25 days components, we merged them into the final news sentiment dataframe. The final news sentiment data frame being roughly 18300 news articles.
 
-However, after we obtained a year's worth of stock data, merged it with our obtained stock data, and parsed the data, it resulted with 164 rows and 10 columns:
+After we obtained a year's worth of stock data, merged it with our obtained stock data, and parsed the data, it resulted with 164 rows and 10 columns:
 
 - Dates: the dates associaed with each price and sentiment.
 - Adj Close, High, Low, Open: Financial data (adjusted close, high, low, and open prices).
 
-In financial data,Adj Close, High, Low, and Open are key metrics that are used to analyze the price of an item on the stock market. Open represents for the price of the stock at the beginning of the day. High and Low both are the highest and lowest price the stock reaches throughout the day. Finally, Adjusted Close is the closing price of a stock that has been adjusted to account for various stock movements, such as stock splits, dividends, and other necessary adjustments. In our model, we look to calculate adjusted close, because it reflects the stock's value while accounting for events that can change the share price over time.
+In financial data, Adj Close, High, Low, and Open are key metrics that are used to analyze the price of an item on the stock market. Open represents for the price of the stock at the beginning of the day. High and Low both are the highest and lowest price the stock reaches throughout the day. Finally, Adjusted Close is the closing price of a stock that has been adjusted to account for various stock movements, such as stock splits, dividends, and other necessary adjustments. In our model, we look to calculate adjusted close, because it reflects the stock's value while accounting for events that can change the share price over time.
 
 - aggregate_sentiment_mean, aggregate_sentiment_median, aggregate_sentiment_std: Statistical metrics for sentiment aggregation.
 
@@ -66,17 +66,17 @@ More importantly, we want to see a numerical correlation between the two of thes
 
 ![Financial Data](./plots/corr_price_sentiment.png)
 
-We observe that average sentiment median has a decently high correlation to price.
+We observe that average sentiment median has a high correlation to price.
 
 ### Target
 
-However, despite knowing how the aggregiate sentiment median interacts with the current day's newscycle, our goal is to predict future adjusted closing prices. Therefore, it makes sense to instead evaluate the correlation between the sentiment and the _next_ day's price; which is contained in a column titled TargetNextClose. Specifically, we want the change in the price between consecutive days; this is the data contained in Target.
+However, despite knowing how the aggregate sentiment median interacts with the current day's newscycle, our goal is to predict future adjusted closing prices. Therefore, it makes sense to instead evaluate the correlation between the sentiment and the next day's price; which is contained in a column titled TargetNextClose. Specifically, we want the change in the price between consecutive days; this is the data contained in Target.
 
 The following plot showcases Target and Sentiment against Dates:
 
 ![Financial Data](./plots/scaled_target_sentiment.png)
 
-Ultimately, the target also seems to fluctuate greatly; each small change in price within the adjusted close price is reflected at a larger scale due to scaling both the sentiment and target to the same scale. However, we can still imagine that the sentiment seems to shadow the target. It is this relationship that we hope to explore with our model.
+Ultimately, the target also seems to fluctuate greatly; each small change in price within the adjusted close price is reflected at a larger scale due to scaling both the sentiment and target to the same scale. However, we can still see that the sentiment shados the target. It is this relationship that we hope to explore with our model.
 
 # Model Analysis
 
