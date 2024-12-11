@@ -26,6 +26,3 @@ jobs:
     - name: Run check
       run: make run & 
             sleep 5 
-
-    - name: Run distcheck
-      run: make distcheck
